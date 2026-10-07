@@ -21,6 +21,13 @@ pipeline {
                 sh 'python3 -m pytest'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                    docker build -t jenkins-cicd-demo:${BUILD_NUMBER} .
+        '''
+    }
+}
     }
 
     post {
